@@ -9,12 +9,15 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import io.qameta.allure.Step;
+
 public class ExcelUtil {
 
 	private static final String TEST_DATA_SHEET_PATH = "./src/test/resources/testdata/OpenCartTestData.xlsx";
 	private static Workbook book;
 	private static Sheet sheet;
 
+	@Step("reading test data from excel sheet")
 	public static Object[][] getTestData(String sheetName) {
 
 		System.out.println("reading test data from sheet:" + sheetName);
