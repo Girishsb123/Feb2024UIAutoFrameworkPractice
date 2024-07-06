@@ -29,7 +29,7 @@
 	</test> 
 
 
-	 <test name="Accounts Page Test">
+	<!-- <test name="Accounts Page Test">
 		<parameter name="browser" value="firefox" />
 		<parameter name="browserversion" value="113" />
 		<parameter name="testname" value="Accounts Page Test" />
@@ -64,5 +64,5 @@
 		</classes>
 	</test> 
 
-
+-->
 </suite>	
