@@ -25,8 +25,8 @@ public class OptionsManager {
 		if(Boolean.parseBoolean(prop.getProperty("headless").trim())) co.addArguments("--headless");
 		if(Boolean.parseBoolean(prop.getProperty("incognito").trim())) co.addArguments("--incognito");
 		
-//		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
-//			co.setCapability("browserName", "chrome");
+		if(Boolean.parseBoolean(prop.getProperty("remote"))) {
+			co.setCapability("browserName", "chrome");
 //			co.setBrowserVersion(prop.getProperty("browserversion").trim());
 //			
 //			Map<String, Object> selenoidOptions = new HashMap<>();
@@ -34,14 +34,10 @@ public class OptionsManager {
 //			selenoidOptions.put("enableVNC", true);
 //			selenoidOptions.put("name", prop.getProperty("testname"));
 //			co.setCapability("selenoid:options", selenoidOptions);
-//
-		return co;
 		}
-//		
-//		
-//		
+		return co;		
 		
-//	}
+	}
 //	
 	public FirefoxOptions getFirefoxOptions() {
 		fo = new FirefoxOptions();

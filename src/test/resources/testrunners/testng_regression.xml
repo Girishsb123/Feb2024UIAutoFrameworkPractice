@@ -19,7 +19,7 @@
 
 	 <test name="Login Page Test">
 		<parameter name="browser" value="chrome" />
-		<parameter name="browserversion" value="117" />
+		<!--<parameter name="browserversion" value="117" />-->
 		<parameter name="testname" value="Login Page Test" />
 
 
@@ -31,7 +31,7 @@
 
 	 <test name="Accounts Page Test">
 		<parameter name="browser" value="firefox" />
-		<parameter name="browserversion" value="113" />
+		<!--<parameter name="browserversion" value="113" />-->
 		<parameter name="testname" value="Accounts Page Test" />
 
 
@@ -43,8 +43,8 @@
 
 
 	 <test name="Product Results Page Test">
-		<parameter name="browser" value="chrome" />
-		<parameter name="browserversion" value="113" />
+		<parameter name="browser" value="edge" />
+		<!--<parameter name="browserversion" value="113" />-->
 		<parameter name="testname"
 			value="Products Results Page Test" />
 
