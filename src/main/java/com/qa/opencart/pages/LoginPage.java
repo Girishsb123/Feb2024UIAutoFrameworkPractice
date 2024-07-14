@@ -1,5 +1,7 @@
 package com.qa.opencart.pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,6 +24,8 @@ public class LoginPage {
 	private By logo = By.cssSelector("img[title='naveenopencart']");
 
 	private By registerLink = By.linkText("Register");
+	
+	private static final Logger log = LogManager.getLogger(LoginPage.class);
 
 	// page const...
 	public LoginPage(WebDriver driver) {

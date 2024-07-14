@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -25,24 +27,30 @@ public class DriverFactory {
 	Properties prop;
 	OptionsManager optionsManager;
 	public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
+	
+	private static final Logger log = LogManager.getLogger(DriverFactory.class);
 
 	public WebDriver initDriver(Properties prop) {
 
 		String browserName = prop.getProperty("browser");
 //		String browserName = System.getProperty("browser");
 
-		System.out.println("browser name is : " + browserName);
+//		System.out.println("browser name is : " + browserName);
+		log.info("browser name is: " + browserName);
 
 		optionsManager = new OptionsManager(prop);
 
 		switch (browserName.trim().toLowerCase()) {
 		case "chrome":
+			 log.info("Runing it on chrome browser...");
 			driver = new ChromeDriver(optionsManager.getChromeOptions());
 
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 				// run it on grid
+				log.info("Runing it on remote machine...");
 				initRemoteDriver(browserName);
 				// run it on local
+				log.info("Runing it on local machine...");
 			} else {
 				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 			}
@@ -72,7 +80,8 @@ public class DriverFactory {
 			break;
 
 		default:
-			System.out.println("Plz pass the right browser : " + browserName);
+//			System.out.println("Plz pass the right browser : " + browserName);
+			log.warn("please pass the right browser name...." + browserName);
 			throw new FrameworkException("INVALID BROWSER : " + browserName);
 		}
 
@@ -90,7 +99,8 @@ public class DriverFactory {
 	 */
 
 	private void initRemoteDriver(String browserName) {
-		System.out.println("Running tests on GRID with browser: " + browserName);
+//		System.out.println("Running tests on GRID with browser: " + browserName);
+		log.info("Running tests on GRID with browser: " + browserName);
 
 		try {
 			switch (browserName.toLowerCase().trim()) {
@@ -128,12 +138,15 @@ public class DriverFactory {
 		prop = new Properties();
 
 		String envName = System.getProperty("env");
-		System.out.println("env name is: " + envName);
+//		System.out.println("env name is: " + envName);
+		log.info("env name is: " + envName);
 
 		try {
 			if (envName == null) {
-				System.out.println("your env is null...hence running tests on QA env...");
+//				System.out.println("your env is null...hence running tests on QA env...");
+				log.warn("your env is null...hence running tests on QA env...");
 				ip = new FileInputStream(".\\src\\test\\resources\\config\\config.qa.properties");
+				log.info(ip);
 			}
 
 			else {
@@ -155,7 +168,8 @@ public class DriverFactory {
 					break;
 
 				default:
-					System.out.println("please pass the right env name..." + envName);
+//					System.out.println("please pass the right env name..." + envName);
+					log.error("wrong env name..." + envName);
 					throw new FrameworkException("Wrong Env Name: " + envName);
 				}
 			}
